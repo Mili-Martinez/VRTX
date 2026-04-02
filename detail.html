@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VRTX Fitness - Sleep Analysis</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eerie-light': '#282723',
+            'eerie-black': '#1c1b17',
+            'smoky-black': '#100c0b',
+            'night': '#171614',
+            'orange-wheel': '#f77e0d',
+            'hot-orange': '#eb4604',
+            'moss': '#99a57d',
+          },
+          fontFamily: {
+            archivo: ['Archivo', 'sans-serif'],
+            'archivo-black': ['Archivo Black', 'sans-serif'],
+            'space-mono': ['Space Mono', 'monospace'],
+          },
+          letterSpacing: {
+            tightest: '-0.07em',
+            tighter: '-0.04em',
+            widest: '0.15em',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #171614; }
+    ::-webkit-scrollbar-thumb { background: #eb4604; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #f77e0d; }
+  </style>
+</head>
+
+<body class="bg-smoky-black text-white min-h-screen flex selection:bg-hot-orange selection:text-white">
+
+  <!-- SIDEBAR (Desktop) -->
+  <aside class="hidden md:flex flex-col w-64 bg-night border-r border-white/5 sticky top-0 h-screen z-50">
+    <!-- Logo -->
+    <div class="h-24 flex items-center justify-center border-b border-white/5 relative overflow-hidden">
+      <!-- Glow effect -->
+      <div
+        class="absolute top-0 right-0 w-20 h-20 bg-hot-orange/40 blur-[30px] rounded-full translate-x-10 -translate-y-10 pointer-events-none">
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-20 h-20 bg-hot-orange/40 blur-[30px] rounded-full -translate-x-10 translate-y-5 pointer-events-none">
+      </div>
+      <h1 class="font-archivo-black text-4xl tracking-tightest uppercase italic text-white relative z-10">
+        VRTX<span class="text-hot-orange">.</span>
+      </h1>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 py-10 px-6 space-y-6">
+      <div class="space-y-2">
+        <p
+          class="font-space-mono text-[10px] text-white/50 tracking-widest uppercase mb-4 pl-3 border-l text-left border-white/10">
+          Views // Data</p>
+
+        <a href="dashboard.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-md text-white/50 hover:text-white hover:bg-white/5 font-space-mono text-xs tracking-wider transition-colors group">
+          <i class="bi bi-grid-1x2 group-hover:text-hot-orange transition-colors"></i> System_Hub
+        </a>
+
+        <a href="#"
+          class="flex items-center gap-3 px-3 py-3 rounded-md text-white/50 hover:text-white hover:bg-white/5 font-space-mono text-xs tracking-wider transition-colors group">
+          <i class="bi bi-heart-pulse group-hover:text-hot-orange transition-colors"></i> Biometrics
+        </a>
+
+        <!-- Active State for Sleep Data -->
+        <a href="#"
+          class="flex items-center gap-3 px-3 py-3 rounded-md bg-white/5 text-hot-orange font-space-mono text-xs tracking-wider border border-white/10 shadow-[inset_0_0_15px_rgba(235,70,4,0.1)] transition-colors">
+          <i class="bi bi-moon-stars"></i> Sleep_Data
+        </a>
+
+        <a href="#"
+          class="flex items-center gap-3 px-3 py-3 rounded-md text-white/50 hover:text-white hover:bg-white/5 font-space-mono text-xs tracking-wider transition-colors group">
+          <i class="bi bi-database-gear group-hover:text-hot-orange transition-colors"></i> Datasets
+        </a>
+      </div>
+    </nav>
+
+    <!-- Footer -->
+    <div class="p-6 border-t border-white/5">
+      <a href="index.html"
+        class="flex items-center gap-3 px-3 py-2 text-white/50 hover:text-hot-orange font-space-mono text-xs tracking-wider transition-colors">
+        <i class="bi bi-power"></i> Terminate_Session
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 overflow-y-auto pb-24 md:pb-0 relative">
+
+    <!-- Background grid -->
+    <div
+      class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjEiIGN5PSIxIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIi8+PC9zdmc+')] z-0 pointer-events-none">
+    </div>
+
+    <div class="max-w-5xl mx-auto p-6 md:p-10 relative z-10">
+
+      <!-- Top Action Bar -->
+      <header class="flex justify-between items-center mb-6 border-b border-white/5 pb-6">
+        <a href="dashboard.html"
+          class="group flex items-center gap-3 font-space-mono text-xs uppercase tracking-widest text-white/50 hover:text-white transition-colors">
+          <div
+            class="w-8 h-8 bg-white/5 flex items-center justify-center border rounded-md border-white/10 group-hover:border-hot-orange group-hover:bg-hot-orange/10 transition-colors">
+            <i class="bi bi-arrow-left"></i>
+          </div>
+          Return to Hub
+        </a>
+        <div class="text-right">
+          <p
+            class="font-space-mono text-[10px] text-moss uppercase tracking-widest bg-moss/10 rounded-md px-2 py-1 inline-block border border-moss/20">
+            Analysis // Complete</p>
+        </div>
+      </header>
+
+      <!-- Detail Header Module -->
+      <div class="mb-12 w-[95%] mx-auto md:w-full">
+        <h2
+          class="font-archivo text-3xl md:text-5xl uppercase italic font-semibold tracking-wider text-hot-orange flex items-center gap-4">
+          Sleep Architecture <i class="bi bi-moon-stars text-hot-orange text-3xl"></i>
+        </h2>
+        <p class="font-space-mono text-xs text-white/40 uppercase tracking-widest mt-2 lg:max-w-xl line-clamp-2">
+          Detailed breakdown of the previous night's multi-stage recovery cycles. Advanced biometric tracking
+          cross-referenced with HRV baseline.
+        </p>
+      </div>
+
+      <!-- Overview Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 mx-auto w-[95%] md:w-full">
+        <div class="bg-night/80 border border-white/10 p-5 rounded-md relative overflow-hidden group">
+          <div class="absolute inset-0 bg-hot-orange/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <p class="font-space-mono text-[10px] text-white/50 uppercase tracking-widest mb-1 relative z-10">Total Rest
+          </p>
+          <div class="font-archivo-black text-2xl md:text-3xl text-white relative z-10">7<span
+              class="text-sm font-space-mono text-white/50 ml-0.5">h</span> 42<span
+              class="text-sm font-space-mono text-white/50 ml-0.5">m</span></div>
+        </div>
+        <div class="bg-night/80 border border-white/10 p-5 rounded-md relative group">
+          <div class="absolute inset-0 bg-hot-orange/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <p class="font-space-mono text-[10px] text-white/50 uppercase tracking-widest mb-1 relative z-10">Efficiency
+          </p>
+          <div class="font-archivo-black text-2xl md:text-3xl text-white relative z-10">96<span
+              class="text-sm font-space-mono text-hot-orange ml-1">%</span></div>
+        </div>
+        <div class="bg-night/80 border border-white/10 p-5 rounded-md relative group">
+          <div class="absolute inset-0 bg-hot-orange/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <p class="font-space-mono text-[10px] text-white/50 uppercase tracking-widest mb-1 relative z-10">Resting HR
+          </p>
+          <div class="font-archivo-black text-2xl md:text-3xl text-white relative z-10">48<span
+              class="text-sm font-space-mono text-white/50 ml-1">bpm</span></div>
+        </div>
+        <div class="bg-night/80 border border-white/10 p-5 rounded-md relative group">
+          <div class="absolute inset-0 bg-hot-orange/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <p class="font-space-mono text-[10px] text-white/50 uppercase tracking-widest mb-1 relative z-10">Resp. Rate
+          </p>
+          <div class="font-archivo-black text-2xl md:text-3xl text-white relative z-10">14.2<span
+              class="text-sm font-space-mono text-white/50 ml-1">rpm</span></div>
+        </div>
+      </div>
+
+      <!-- Main Chart Area -->
+      <div
+        class="bg-night/90 backdrop-blur-md border border-white/10 rounded-md shadow-[0_8px_32px_rgba(0,0,0,0.3)] relative overflow-hidden mb-8 w-[95%] md:w-full mx-auto">
+        <div
+          class="p-6 md:p-8 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+          <div>
+            <h3 class="font-archivo text-xl uppercase tracking-wider text-white">Hypnogram Analysis</h3>
+            <p class="font-space-mono text-[10px] text-white/50 mt-1">Timeline mapping of
+              sleep stages</p>
+          </div>
+          <div class="flex items-center gap-4 font-space-mono text-[10px] uppercase tracking-widest text-white/60">
+            <span class="flex items-center gap-1.5">
+              <div class="w-2 h-2 rounded-full bg-hot-orange shadow-[0_0_5px_#eb4604]"></div> Deep
+            </span>
+            <span class="flex items-center gap-1.5">
+              <div class="w-2 h-2 rounded-full bg-moss shadow-[0_0_5px_#99a57d]"></div> Light
+            </span>
+            <span class="flex items-center gap-1.5">
+              <div class="w-2 h-2 rounded-full bg-orange-wheel shadow-[0_0_5px_#f77e0d]"></div> REM
+            </span>
+            <span class="flex items-center gap-1.5">
+              <div class="w-2 h-2 rounded-full bg-white/50 shadow-[0_0_5px_rgba(255,255,255,0.5)]"></div> Awake
+            </span>
+          </div>
+        </div>
+
+        <!-- Simulated Chart Wrapper -->
+        <div class="p-6 md:p-8 relative h-64 flex flex-col justify-between">
+          <!-- Stage Grid Lines -->
+          <div class="absolute inset-0 pl-16 pr-8 py-8 flex flex-col justify-between pointer-events-none">
+            <div class="w-full border-t border-white/5 border-dashed"></div>
+            <div class="w-full border-t border-white/5 border-dashed"></div>
+            <div class="w-full border-t border-white/5 border-dashed"></div>
+            <div class="w-full border-t border-hot-orange/20 border-dashed"></div>
+          </div>
+
+          <!-- Y Axis Labels -->
+          <div
+            class="absolute left-6 top-8 bottom-8 flex flex-col justify-between font-space-mono text-[9px] uppercase tracking-widest text-white/30 h-[calc(100%-4rem)] w-10 text-right pr-2 font-bold">
+            <span class="text-white/50">AWK</span>
+            <span class="text-orange-wheel">REM</span>
+            <span class="text-moss">LGT</span>
+            <span class="text-hot-orange">DEP</span>
+          </div>
+
+          <!-- Fake Chart Graph -->
+          <div class="w-full h-full ml-10 flex items-end gap-0.5 relative z-10 opacity-90 mx-auto">
+            <!-- Simple visualization built with vertical bars to simulate a continuous hypnogram -->
+            <!-- 11pm - Awake -->
+            <div class="w-[3%] h-full bg-white/50 hover:bg-white transition-colors" title="Awake - 11:00 PM"></div>
+            <!-- Falling Asleep - Light -->
+            <div class="w-[5%] h-[50%] bg-moss hover:bg-white transition-colors shadow-[0_0_10px_#99a57d]"></div>
+            <!-- First Deep Cycle -->
+            <div
+              class="w-[12%] h-[25%] bg-hot-orange border-t-2 border-hot-orange/50 hover:bg-white transition-colors shadow-[0_0_10px_#eb4604]">
+            </div>
+            <div class="w-[4%] h-[50%] bg-moss hover:bg-white transition-colors"></div>
+            <!-- First REM -->
+            <div
+              class="w-[8%] h-[75%] bg-orange-wheel hover:bg-white transition-colors shadow-[0_0_10px_#f77e0d] border-t-2 border-orange-wheel/50">
+            </div>
+            <!-- Short Light -->
+            <div class="w-[5%] h-[50%] bg-moss hover:bg-white transition-colors"></div>
+            <!-- Second Deep -->
+            <div class="w-[15%] h-[25%] bg-hot-orange hover:bg-white transition-colors shadow-[0_0_10px_#eb4604]"></div>
+            <div class="w-[6%] h-[50%] bg-moss hover:bg-white transition-colors"></div>
+            <!-- Spike Awake -->
+            <div class="w-[1%] h-[100%] bg-white/50 hover:bg-white transition-colors"></div>
+            <div class="w-[4%] h-[50%] bg-moss hover:bg-white transition-colors"></div>
+            <!-- Long REM -->
+            <div class="w-[18%] h-[75%] bg-orange-wheel hover:bg-white transition-colors shadow-[0_0_10px_#f77e0d]">
+            </div>
+            <!-- Light -->
+            <div class="w-[10%] h-[50%] bg-moss hover:bg-white transition-colors"></div>
+            <!-- Last REM -->
+            <div class="w-[6%] h-[75%] bg-orange-wheel hover:bg-white transition-colors"></div>
+            <!-- Wake up -->
+            <div class="w-[3%] h-[100%] bg-white/50 hover:bg-white transition-colors"></div>
+          </div>
+
+          <!-- X Axis Labels -->
+          <div
+            class="absolute bottom-1 left-16 right-8 flex justify-between font-space-mono text-[9px] text-white/30 tracking-widest mt-2 px-2 border-t border-white/5 pt-1">
+            <span>11:00 PM</span>
+            <span>1:00 AM</span>
+            <span>3:00 AM</span>
+            <span>5:00 AM</span>
+            <span>7:00 AM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Breakdowns -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:w-full w-[95%] mx-auto">
+        <!-- Stage Breakdown -->
+        <div class="bg-night/60 border border-white/5 p-6 rounded-md">
+          <h4 class="font-archivo text-sm uppercase tracking-widest text-white mb-6 border-b border-white/10 pb-3">Stage
+            Distribution</h4>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-16 font-space-mono text-[10px] text-white/50 uppercase">Deep</div>
+              <div class="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                <div class="h-full bg-hot-orange w-[28%] shadow-[0_0_10px_#eb4604]"></div>
+              </div>
+              <div class="w-16 text-right font-space-mono text-xs text-white uppercase font-bold">28% <span
+                  class="text-[9px] text-white/30 ml-1 font-normal block">2h 11m</span></div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-16 font-space-mono text-[10px] text-white/50 uppercase">REM</div>
+              <div class="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                <div class="h-full bg-orange-wheel w-[25%] shadow-[0_0_10px_#f77e0d]"></div>
+              </div>
+              <div class="w-16 text-right font-space-mono text-xs text-white uppercase font-bold">25% <span
+                  class="text-[9px] text-white/30 ml-1 font-normal block">1h 55m</span></div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-16 font-space-mono text-[10px] text-white/50 uppercase">Light</div>
+              <div class="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                <div class="h-full bg-moss w-[42%] shadow-[0_0_10px_#99a57d]"></div>
+              </div>
+              <div class="w-16 text-right font-space-mono text-xs text-white uppercase font-bold">42% <span
+                  class="text-[9px] text-white/30 ml-1 font-normal block">3h 14m</span></div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-16 font-space-mono text-[10px] text-white/50 uppercase">Awake</div>
+              <div class="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                <div class="h-full bg-white/50 w-[5%] shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
+              </div>
+              <div class="w-16 text-right font-space-mono text-xs text-white uppercase font-bold">5% <span
+                  class="text-[9px] text-white/30 ml-1 font-normal block">22m</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Insights Box -->
+        <div class="bg-night/60 border border-hot-orange/30 p-6 rounded-md relative group overflow-hidden flex flex-col h-full">
+          <div
+            class="absolute -top-10 -right-10 w-32 h-32 bg-hot-orange/10 blur-[30px] rounded-full pointer-events-none group-hover:bg-hot-orange/20 transition-colors">
+          </div>
+
+          <div class="flex items-center gap-3 mb-4">
+            <i class="bi bi-cpu text-hot-orange text-xl animate-pulse"></i>
+            <h4 class="font-archivo text-sm uppercase tracking-widest text-white">VRTX_AI // Synthesis</h4>
+          </div>
+
+          <!-- Wrapper for vertically centering the text -->
+          <div class="flex-1 flex flex-col justify-center">
+            <p
+              class="font-space-mono text-[11px] text-white/70 leading-relaxed border-l-2 border-hot-orange/50 pl-4 pr-2">
+              "Deep sleep cycle volume increased by <strong>+14%</strong> versus 30-day baseline. Optimal neuro-muscular
+              recovery achieved. HRV trend suggests peak readiness for CNS-intensive loading protocols within the next 12
+              hours."
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto">
+            <p class="font-space-mono text-[10px] tracking-widest text-white/40 uppercase">Action Recommended</p>
+            <p
+              class="font-space-mono text-[10px] uppercase font-bold tracking-widest text-hot-orange bg-hot-orange/10 px-2 py-1 border border-hot-orange/30 rounded-md">
+              Engage Max Strength</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MOBILE BOTTOM MENU -->
+  <nav
+    class="md:hidden fixed bottom-0 left-0 w-full bg-night/90 backdrop-blur-md border-t border-white/10 z-50 flex justify-around items-center h-16 px-4">
+    <a href="dashboard.html"
+      class="flex flex-col items-center gap-1 text-white/50 hover:text-white p-2 transition-colors">
+      <i class="bi bi-grid-1x2-fill text-lg"></i>
+    </a>
+    <a href="#" class="flex flex-col items-center gap-1 text-white/50 hover:text-white p-2 transition-colors">
+      <i class="bi bi-heart-pulse text-lg"></i>
+    </a>
+    <!-- Main Center Button Active -->
+    <a href="detail.html"
+      class="flex items-center justify-center w-12 h-12 bg-hot-orange text-night rounded-sm -mt-6 shadow-[0_4px_15px_rgba(235,70,4,0.4)] border border-hot-orange hover:scale-105 transition-transform">
+      <i class="bi bi-moon-stars text-xl animate-pulse"></i>
+    </a>
+    <a href="#" class="flex flex-col items-center gap-1 text-white/50 hover:text-white p-2 transition-colors">
+      <i class="bi bi-database-gear text-lg"></i>
+    </a>
+    <a href="index.html"
+      class="flex flex-col items-center gap-1 text-white/50 hover:text-hot-orange p-2 transition-colors">
+      <i class="bi bi-power text-lg"></i>
+    </a>
+  </nav>
+
+</body>
+
+</html>

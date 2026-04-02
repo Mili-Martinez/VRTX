@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VRTX Fitness - Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eerie-light': '#282723',
+            'eerie-black': '#1c1b17',
+            'smoky-black': '#100c0b',
+            'night': '#171614',
+            'orange-wheel': '#f77e0d',
+            'hot-orange': '#eb4604',
+            'moss': '#99a57d',
+          },
+          fontFamily: {
+            archivo: ['Archivo', 'sans-serif'],
+            'archivo-black': ['Archivo Black', 'sans-serif'],
+            'space-mono': ['Space Mono', 'monospace'],
+          },
+          backgroundImage: {
+            'vrtx-gradient': 'linear-gradient(45deg, #171614 0%, #282723 25%, #f77e0d 65%, #eb4604 100%)',
+          },
+          letterSpacing: {
+            tightest: '-0.07em',
+            tighter: '-0.04em',
+            widest: '0.15em',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #171614; }
+    ::-webkit-scrollbar-thumb { background: #eb4604; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #f77e0d; }
+  </style>
+</head>
+
+<body class="bg-eerie-black text-white min-h-screen flex selection:bg-hot-orange selection:text-white">
+  <main class="w-full flex flex-col md:flex-row min-h-screen">
+
+    <!-- LEFT COLUMN: FORM -->
+    <div
+      class="w-full md:w-1/2 flex flex-col justify-center items-center p-4 md:p-8 lg:p-16 z-10 relative bg-eerie-black/20 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none min-h-[100dvh] md:min-h-0 overflow-hidden">
+      <!-- Glow effect behind form -->
+      <div class="absolute inset-0 bg-night/5 blur-[80px] rounded-full pointer-events-none scale-150"></div>
+
+      <div class="w-full max-w-sm relative z-20 flex flex-col items-center md:items-center text-center">
+        <div class="mb-10 w-full px-4 md:px-0">
+          <h1
+            class="font-archivo-black text-7xl md:text-8xl tracking-tightest uppercase italic text-white mt-4 mb-2 text-center">
+            VRTX<span class="text-hot-orange">.</span>
+          </h1>
+          <p
+            class="font-space-mono text-[10px] md:text-xs uppercase tracking-[0.2em] text-moss opacity-80 pl-3 py-1 text-center inline-block mx-auto">
+            SYS.STATUS <span class="text-hot-orange animate-pulse">●</span> ONLINE<br>
+            AWAITING BIOMETRIC SYNC
+          </p>
+        </div>
+
+        <form class="space-y-5 w-[70%] md:[75%] text-left">
+          <div class="group">
+            <label
+              class="font-space-mono text-[10px] text-white/90 mb-1.5 block tracking-widest uppercase transition-colors group-focus-within:text-hot-orange">Identity
+              // Email</label>
+            <div class="relative">
+              <input type="email" placeholder="user@vrtx.lab" required
+                class="w-full bg-night/80 border border-white/10 rounded-md py-2.5 px-3 font-space-mono text-xs text-white focus:border-hot-orange focus:bg-smoky-black focus:outline-none transition-all placeholder:text-white/20 shadow-inner">
+            </div>
+          </div>
+
+          <div class="group">
+            <div class="flex justify-between items-end mb-1.5">
+              <label
+                class="font-space-mono text-[10px] text-white/90 block tracking-widest uppercase transition-colors group-focus-within:text-hot-orange">Access
+                // Key</label>
+              <a href="#"
+                class="font-space-mono text-[10px] text-white/70 hover:text-white transition-colors">RESET_KEY?</a>
+            </div>
+            <div class="relative">
+              <input type="password" placeholder="••••••••" required
+                class="w-full bg-night/80 border border-white/10 rounded-md py-2.5 px-3 font-space-mono text-xs text-white focus:border-hot-orange focus:bg-smoky-black focus:outline-none transition-all placeholder:text-white/20 shadow-inner">
+            </div>
+          </div>
+
+          <button type="submit"
+            class="group relative w-full overflow-hidden bg-night border border-hot-orange/50 hover:border-hot-orange text-xs font-archivo font-semibold uppercase py-2.5 rounded-md mt-8 tracking-widest transition-all duration-300 active:scale-[0.98]">
+            <div class="absolute inset-0 w-0 bg-hot-orange transition-all duration-500 ease-out group-hover:w-full">
+            </div>
+            <span
+              class="relative z-10 flex items-center justify-center gap-2 group-hover:text-smoky-black transition-colors">
+              <i class="bi bi-fingerprint text-base"></i>
+              Initiate Sync
+            </span>
+          </button>
+        </form>
+
+        <div class="mt-8 pt-5 border-t border-white/10 text-center w-full">
+          <p class="font-space-mono text-[10px] text-white/40">NO CLEARANCE? <a href="#"
+              class="text-hot-orange hover:text-white transition-colors underline decoration-hot-orange/30 underline-offset-4">REQUEST
+              ACCESS</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: VISUAL / DATA -->
+    <div
+      class="absolute inset-0 md:relative md:flex w-full md:w-1/2 overflow-hidden bg-smoky-black items-center justify-center border-l-0 md:border-l border-white/5 shadow-[-20px_0_50px_rgba(0,0,0,0.5)] z-0">
+      <!-- Background Image -->
+      <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2669&auto=format&fit=crop"
+        alt="Athlete in motion"
+        class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700 contrast-125 mix-blend-luminosity">
+
+      <!-- Gradient Overlays -->
+      <div class="absolute inset-0 bg-gradient-to-t from-smoky-black via-transparent to-smoky-black"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-eerie-black via-transparent to-transparent"></div>
+
+      <!-- Tech Overlay Grid -->
+      <div
+        class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30">
+      </div>
+
+
+    </div>
+  </main>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      // Animate out or show loading state if you want, but for now just redirect
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+
+</html>
