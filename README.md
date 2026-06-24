@@ -1,29 +1,32 @@
-# ⚡ VRTX — Performance Lab
+# VRTX — Performance Lab
 
-VRTX es una plataforma de análisis biométrico de alto rendimiento diseñada para atletas y entusiastas del bio-hacking. El proyecto se centra en la transformación de datos biométricos complejos en una interfaz visual intuitiva, agresiva y de alta precisión.
+VRTX is a high-performance biometric analysis platform engineered for athletes and bio-hacking enthusiasts. The project focuses on translating complex physiological datasets into an intuitive, aggressive, and high-precision visual dashboard interface.
 
-## 🎯 Visión Estratégica
-El objetivo de VRTX no es solo mostrar datos, sino proporcionar una "consola de mando" para el cuerpo humano. Se priorizó una estética **Dark Mode** de alto contraste para garantizar la legibilidad en entornos de entrenamiento de alta intensidad.
+🎯 Strategic Vision
+VRTX functions not just as a data tracker, but as a command center for the human body. The interface prioritizes a high-contrast Dark Mode aesthetic to ensure instant readability even in high-intensity, low-light training environments.
 
-## 🛠️ Stack Tecnológico
-* **Frontend:** HTML5 Semántico & Tailwind CSS 4.0.
-* **Tipografía:** * `Archivo Black` para una jerarquía de títulos con máxima fuerza visual.
-    * `Space Mono` para la visualización de métricas, aportando un look técnico y preciso.
-* **Filtros Dinámicos:** Uso de filtros CSS nativos (`grayscale`, `contrast`, `brightness`) para el tratamiento de assets visuales sin sacrificar el rendimiento de carga.
+🧠 Design Decisions & UX Mechanics
+VRTX was developed utilizing a modern engineering workflow combining Assisted Prototyping and Manual Refactoring:
 
-## 🧠 Decisiones de Diseño y UX
-Para el desarrollo de VRTX, se aplicó un flujo de trabajo moderno de **Prototipado Asistido y Refactorización Manual**:
+* **Information Architecture:** Implemented a modular Grid System that structures data hierarchy based on natural "Z" visual scanning patterns, anchoring the screen with the Readiness Score as the primary focal point.
+* **"High-Voltage" Color System:** Selected a stark palette featuring Smoky Black and Orange Wheel 500. The vibrant orange acts as an intentional action and energy indicator, popping against neutral backdrops to reduce user cognitive load.
+* **Componentization:** Structured the entire interface through highly reusable UI components (Metric Cards, Navigation Sidebar, and Technical Inputs), ensuring project scalability and clean code maintenance.
+* **Native Performance:** Leveraged native CSS filters (`grayscale`, `contrast`, `brightness`) for visual asset treatments, preserving fast loading speeds and optimal performance.
 
-* **Arquitectura de Información:** Implementación de una grilla modular (Grid System) que organiza la jerarquía de datos siguiendo patrones de escaneo visual en "Z", ubicando el *Readiness Score* como el punto de anclaje principal.
-* **Sistema de Color "High-Voltage":** Se seleccionó una paleta basada en `Smoky Black` y `Orange Wheel 500`. El naranja funciona como un indicador de acción y energía, destacando sobre el fondo neutro para reducir la carga cognitiva.
-* **Componentización:** Estructuración de la interfaz mediante componentes reutilizables (Cards de métricas, Sidebar de navegación y Inputs técnicos), asegurando la escalabilidad del proyecto.
+🚀 Project Architecture
+The VRTX ecosystem is split into three functional core screens:
+1. **Initialize (Login):** The entry portal establishing the core brand identity lines.
+2. **The Core (Dashboard):** A centralized hub displaying real-time bio-metrics and analytics.
+3. **The Pulse (Detail View):** Deep-dive visualization for specific variables (Sleep, HRV, Training Load).
 
-## 🚀 Estructura del Proyecto
-El ecosistema de VRTX se divide en tres núcleos funcionales:
-1. **Initialize (Login):** El portal de entrada que establece la identidad de marca.
-2. **The Core (Dashboard):** Centro de visualización de métricas en tiempo real.
-3. **The Pulse (Detail View):** Análisis profundo de variables específicas (Sueño, HRV, Carga).
+🛠️ Tech Stack & Tools
+* **Frontend:** Semantic HTML5 & Tailwind CSS 4.0
+* **Typography:** Archivo Black (maximum visual strength for headers); Space Mono (technical, data-centric look for metrics displays)
+* **Deployment:** GitHub Pages
 
----
-### 🔗 Demo en vivo
-Puedes explorar la experiencia completa aquí: [VRTX — Live Demo](https://mili-martinez.github.io/VRTX/)
+🚀 Live Demo
+✨ Explore the complete platform interface here: [VRTX — Live Demo](https://mili-martinez.github.io/VRTX/)
+
+
+
+
