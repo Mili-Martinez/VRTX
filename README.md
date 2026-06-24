@@ -1,5 +1,7 @@
 # VRTX — Performance Lab
 
+<img src="vrtx..jpgg" alt="VRTX." width="100%">
+
 VRTX is a high-performance biometric analysis platform engineered for athletes and bio-hacking enthusiasts. The project focuses on translating complex physiological datasets into an intuitive, aggressive, and high-precision visual dashboard interface.
 
 🎯 Strategic Vision
